@@ -25,7 +25,6 @@ func main() {
 	}
 	group.Terminate(1 * time.Second)
 }
-
 ```
 # LICENSE
 BSD
