@@ -39,3 +39,6 @@ Install [Go 1][3], either [from source][4] or [with a prepackaged binary][5].
 Then run
 
     go get github.com/nightlyone/process
+
+# NOTE
+ This package will only work on UNIX based systems
