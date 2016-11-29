@@ -34,6 +34,18 @@ func TestAlreadyExecutedFails(t *testing.T) {
 	}
 }
 
+func TestSetsidConflictFails(t *testing.T) {
+	t.Parallel()
+	what := "true"
+	cmd := exec.Command(what)
+	cmd.SysProcAttr = &syscall.SysProcAttr{Setsid: true}
+	_, err := Background(cmd)
+	wantErr := errors.New("May not be used with a cmd.SysProcAttr.Setsid = true")
+	if err == nil || err.Error() != wantErr.Error() {
+		t.Fatalf("got %v, expected error %v", err, wantErr)
+	}
+}
+
 func TestStartingNonExistingFailsRightAway(t *testing.T) {
 	t.Parallel()
 	cmd := exec.Command("/var/run/nonexistant")
@@ -46,7 +58,7 @@ func TestStartingNonExistingFailsRightAway(t *testing.T) {
 
 func TestBackgroundingWorks(t *testing.T) {
 	t.Parallel()
-	what := "/bin/true"
+	what := "true"
 	cmd := exec.Command(what)
 	g, err := Background(cmd)
 	if err != nil {

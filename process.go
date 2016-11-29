@@ -37,14 +37,15 @@ func Background(cmd *exec.Cmd) (*Group, error) {
 
 	// NOTE: Cannot setsid and and setpgid in one child. Would need double fork or exec,
 	// which makes things very hard.
-	if cmd.SysProcAttr == nil {
-		cmd.SysProcAttr = &syscall.SysProcAttr{
-			Setpgid: true,
-		}
-
-	} else {
-		return nil, errUnimplemented
+	if cmd.SysProcAttr != nil && cmd.SysProcAttr.Setsid {
+		return nil, fmt.Errorf("May not be used with a cmd.SysProcAttr.Setsid = true")
 	}
+
+	if cmd.SysProcAttr == nil {
+		cmd.SysProcAttr = &syscall.SysProcAttr{}
+	}
+
+	cmd.SysProcAttr.Setpgid = true
 
 	// Try to start process
 	go startProcess(cmd, startc, waitc)
