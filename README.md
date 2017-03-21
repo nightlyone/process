@@ -2,10 +2,8 @@
 Managing processes with Go
 
 [![GoDoc](https://godoc.org/github.com/nightlyone/process?status.svg)](https://godoc.org/github.com/nightlyone/process)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/nightlyone/process?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status][1]][2]
-[1]: https://secure.travis-ci.org/nightlyone/process.png
-[2]: https://travis-ci.org/nightlyone/process
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nightlyone/process)
+[![Build Status](https://secure.travis-ci.org/nightlyone/process.png)](https://travis-ci.org/nightlyone/process)
 
 # example usage
 ```go
